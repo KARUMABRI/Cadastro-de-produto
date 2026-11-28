@@ -1,11 +1,17 @@
+
 import mysql.connector
 
-conexao = mysql.connector.connect(
-    host="localhost",
-    user="root",
-    password="",
-    database="empresa"
-)
+def conectar():
+    try:
+        conexao = mysql.connector.connect(
+            host="localhost",
+            user="root",
+            password="",
+            database="empresa"
+        )
 
-if conexao.is_connected():
-    print("Conexão bem-sucedida ao banco de dados!")    
+        return conexao
+
+    except mysql.connector.Error as erro:
+        print(f"Erro ao conectar ao banco de dados: {erro}")
+        return None
